@@ -1,0 +1,6 @@
+@DataExtraction_HostAddress = http://localhost:5292
+
+GET {{DataExtraction_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
