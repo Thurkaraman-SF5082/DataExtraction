@@ -20,17 +20,21 @@ namespace DataExtraction
         }
 
         [HttpGet("data")]
-        public async Task Get()
+        // public async Task<IActionResult> Get()
+        public async Task<DataTable> Get()
         {
             try
             {
-                await _dBService.QueryRouter();
+                DataTable dataTable = await _dBService.QueryRouter();
+                System.Console.WriteLine($"controller : {dataTable}");
+                return dataTable;
                 // return Ok(new { Message = "success"});
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 System.Console.WriteLine(ex.Message);
             }
+            return null;
         }
     }
 }

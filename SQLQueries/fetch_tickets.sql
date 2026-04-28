@@ -7,7 +7,7 @@ case
 		then (a.custom_fields->>'1001')::float 
 	else ((a.custom_fields->>'1001')::float - (((a.custom_fields->>'1001')::float * (a.custom_fields->>'1440')::float)/100)) 
 end as "Amount After Discount",
-a.custom_fields->>'1240'::float as "Commission"
+(a.custom_fields->>'1240')::float as "Commission"
 FROM public.ticket_detail a
 join
 users b on b.id = a.assigned_to_user_id
