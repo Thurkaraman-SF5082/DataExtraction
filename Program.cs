@@ -1,7 +1,5 @@
-using System.Data;
 using DataExtraction.Interfaces;
 using DataExtraction.Models;
-using Npgsql;
 
 namespace DataExtraction;
 
@@ -15,10 +13,8 @@ class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        // builder.Services.AddScoped<IDbConnection>(sp =>
-        //     new NpgsqlConnection(builder.Configuration.GetConnectionString("PostgresDb")));
-
-        builder.Services.AddScoped<IDBService, DBService>();
+        builder.Services.AddScoped<IDBReadService, DBReadService>();
+        builder.Services.AddScoped<IDbWriteService, DbWriteService>();
 
         var app = builder.Build();
 

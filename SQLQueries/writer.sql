@@ -1,0 +1,1 @@
+COPY "BoldInsights" (id,title,assignee,"Amount After Discount","Commission") FROM STDIN (FORMAT BINARY)

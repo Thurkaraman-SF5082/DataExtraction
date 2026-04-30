@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DataExtraction.Models.PaymentFrequency
 {
-    public class UpfrontAndMonthly
+    public class UpFrontAndMonthly
     {
         
     }

@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using DataExtraction.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,29 +8,35 @@ namespace DataExtraction
     [Route("api/[controller]")]
     public class NewApiController : ControllerBase
     {
-        private readonly IDBService _dBService;
-        // private readonly IDbConnection _dbConnection;
-        public NewApiController(IDBService dBService)
+        private readonly IDBReadService _dBReadService;
+        private readonly IDbWriteService _dBWriteService;
+        public NewApiController(IDBReadService dBReadService, IDbWriteService dbWriteService)
         {
-            _dBService = dBService;
+            _dBReadService = dBReadService;
+            _dBWriteService = dbWriteService;
         }
 
-        [HttpGet("data")]
-        // public async Task<IActionResult> Get()
-        public async Task<DataTable> Get()
+        //calling query router to access the db
+        [HttpPost("DataTransfer")]
+        public async Task<IActionResult> Transfer()
         {
             try
             {
-                DataTable dataTable = await _dBService.QueryRouter();
-                System.Console.WriteLine($"controller : {dataTable}");
-                return dataTable;
-                // return Ok(new { Message = "success"});
+                DataTable dataTable = await _dBReadService.QueryRouter();
+                await _dBWriteService.Insert(dataTable);
             }
-            catch (Exception ex)
+            catch (AggregateException ex)
             {
-                System.Console.WriteLine(ex.Message);
+                System.Console.WriteLine(ex.InnerException?? ex);
             }
-            return null;
+            return Ok("success");
         }
+
+        // [HttpGet("customfield")]
+        // public Task<IActionResult> GetCustomField()
+        // {
+
+        //     // return Ok("success");
+        // }
     }
 }
