@@ -11,7 +11,10 @@ class Program
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen(e =>
+        {
+            e.UseInlineDefinitionsForEnums();
+        });
 
         builder.Services.AddScoped<IDBReadService, DBReadService>();
         builder.Services.AddScoped<IDbWriteService, DbWriteService>();
@@ -24,7 +27,6 @@ class Program
             app.UseSwaggerUI();
         }
 
-        app.UseHttpsRedirection();
         app.UseStaticFiles();
         app.UseRouting();
         app.UseAuthorization();

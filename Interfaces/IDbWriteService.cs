@@ -4,6 +4,6 @@ namespace DataExtraction.Interfaces
 {
     public interface IDbWriteService
     {
-        Task Insert(DataTable dataTable);
+        Task Upsert(DataTable dataTable);
     }
 }

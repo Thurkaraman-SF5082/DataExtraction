@@ -9,7 +9,7 @@ namespace DataExtraction.Models
         private readonly IConfiguration _configuration;
 
         //reading connection string from appsettings.json through IConfiguration
-        //creating sql query by reading .sql file
+        //reading tickets data and storing it
         public DBReadService(IConfiguration configuration)
         {
             _configuration = configuration;
