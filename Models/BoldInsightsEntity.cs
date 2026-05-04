@@ -17,5 +17,7 @@ namespace DataExtraction.Models
         public double AmountAfterDiscount { get; set; }
         // [Column("Commission")]
         public double Commission { get; set; }
+        [Column("Payment Frequency")]
+        public string PaymentFrequency { get; set; }
     }
 }
