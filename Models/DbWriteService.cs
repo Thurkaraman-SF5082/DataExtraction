@@ -1,5 +1,4 @@
 using System.Data;
-using System.Transactions;
 using DataExtraction.Interfaces;
 using Npgsql;
 using NpgsqlTypes;
