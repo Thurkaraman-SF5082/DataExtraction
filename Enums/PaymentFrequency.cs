@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace DataExtraction.Enums
 {
-    [JsonConverter(typeof(JsonStringEnumConverter))]
+    // [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum PaymentFrequency
     {
         [Description("Single one-time payment")]

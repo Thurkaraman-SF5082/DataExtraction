@@ -2,6 +2,6 @@ namespace DataExtraction.Interfaces
 {
     public interface ICustomField
     {
-        public int GetOperationsCustomFieldCode();
+        public int GetOperationsCustomFieldCode(string paymentFrequency);
     }
 }

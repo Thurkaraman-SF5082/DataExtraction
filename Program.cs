@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using DataExtraction.Interfaces;
 using DataExtraction.Models;
 
@@ -9,15 +10,14 @@ class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen(e =>
-        {
-            e.UseInlineDefinitionsForEnums();
-        });
+        builder.Services.AddSwaggerGen();
+        builder.Services.AddControllers();
 
         builder.Services.AddScoped<IDBReadService, DBReadService>();
         builder.Services.AddScoped<IDbWriteService, DbWriteService>();
+        builder.Services.AddScoped<ICustomField, CustomFieldCode>();
+        builder.Services.AddScoped<IPaymentOccurency, PaymentOccurency>();
 
         var app = builder.Build();
 

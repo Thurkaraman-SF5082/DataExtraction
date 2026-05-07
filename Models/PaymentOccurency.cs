@@ -3,9 +3,9 @@ using DataExtraction.Interfaces;
 
 namespace DataExtraction.Models
 {
-    public class CustomFieldCode : ICustomField
+    public class PaymentOccurency : IPaymentOccurency
     {
-        public int GetOperationsCustomFieldCode(string paymentFrequency)
+        public int GetPaymentOccurencyPerYear(string paymentFrequency)
         {
             PaymentFrequency convertedEnum = (PaymentFrequency)Enum.Parse(typeof(PaymentFrequency), paymentFrequency, ignoreCase: true);
 
@@ -13,27 +13,27 @@ namespace DataExtraction.Models
             {
                 case PaymentFrequency.SingleOneTimePayment:
                     {
-                        return 1117;
+                        return 0;
                     }
                 case PaymentFrequency.MonthlyPayments:
                     {
-                        return 1118;
+                        return 12;
                     }
                 case PaymentFrequency.QuarterlyPayments:
                     {
-                        return 1119;
+                        return 4;
                     }
                 case PaymentFrequency.CustomPaymentSchedule:
                     {
-                        return 1120;
+                        return 0;
                     }
                 case PaymentFrequency.UpfrontPaymentAndMonthlyPayments:
                     {
-                        return 1121;
+                        return 0;
                     }
                 case PaymentFrequency.AnnualPayment:
                     {
-                        return 1122;
+                        return 1;
                     }
             }
             return 0;
