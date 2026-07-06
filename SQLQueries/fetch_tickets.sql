@@ -1,6 +1,7 @@
 SELECT 
 a.id,
 title,
+a.created_on,
 b.name as assignee,
 case
 	when (a.custom_fields->>'1440')::float is null 
@@ -18,7 +19,7 @@ where
 b.name in ('Tonny Odhiambo Ojwang')
 and
 is_spam is false
-and
-a.ticket_category_option_id = 3617
+-- and
+-- a.ticket_category_option_id = 3617
 order by
 a.id

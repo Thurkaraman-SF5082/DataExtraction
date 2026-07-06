@@ -1,4 +1,4 @@
-namespace DataExtraction.Models
+namespace DataExtraction.Services
 {
     public class QueryReader
     {

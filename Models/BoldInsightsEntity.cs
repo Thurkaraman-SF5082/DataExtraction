@@ -10,14 +10,16 @@ namespace DataExtraction.Models
         [Column("id")]
         public long Id { get; set; }
         [Column("title")]
-        public string Title { get; set; }
+        public string? Title { get; set; }
+        [Column("created_on")]
+        public DateTimeOffset? CreatedOn { get; set; }
         [Column("assignee")]
-        public string Assignee { get; set; }
+        public string? Assignee { get; set; }
         [Column("Amount After Discount")]
-        public double AmountAfterDiscount { get; set; }
+        public double? AmountAfterDiscount { get; set; }
         // [Column("Commission")]
-        public double Commission { get; set; }
+        public double? Commission { get; set; }
         [Column("Payment Frequency")]
-        public string PaymentFrequency { get; set; }
+        public string? PaymentFrequency { get; set; }
     }
 }

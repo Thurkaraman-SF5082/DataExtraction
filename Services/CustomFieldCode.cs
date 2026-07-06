@@ -1,7 +1,7 @@
 using DataExtraction.Enums;
 using DataExtraction.Interfaces;
 
-namespace DataExtraction.Models
+namespace DataExtraction.Services
 {
     public class CustomFieldCode : ICustomField
     {

@@ -1,6 +1,6 @@
-using System.Text.Json.Serialization;
 using DataExtraction.Interfaces;
-using DataExtraction.Models;
+using DataExtraction.Services;
+using Npgsql;
 
 namespace DataExtraction;
 
@@ -18,6 +18,19 @@ class Program
         builder.Services.AddScoped<IDbWriteService, DbWriteService>();
         builder.Services.AddScoped<ICustomField, CustomFieldCode>();
         builder.Services.AddScoped<IPaymentOccurency, PaymentOccurency>();
+        builder.Services.AddScoped<IDataTableToJsonConvertor, DataTableToJsonConvertor>();
+        builder.Services.AddTransient<IDbJSONInsertion, DbJSONInsertion>();
+        builder.Services.AddSingleton<QueryBuilder>();
+        builder.Services.AddSingleton<JsonQueryBuilder>();
+        builder.Services.AddScoped<IAgentTicketInsights, AgentTicketInsights>(cg =>
+
+            new AgentTicketInsights(cg.GetRequiredService<QueryBuilder>()));
+        builder.Services.AddScoped<IAgentTicketInsights, AgentJsonTicketInsights>(cg =>
+
+            new AgentJsonTicketInsights(cg.GetRequiredService<JsonQueryBuilder>())
+        );
+
+        NpgsqlConnection.GlobalTypeMapper.MapComposite<DateTimeOffset>("timestampz");
 
         var app = builder.Build();
 

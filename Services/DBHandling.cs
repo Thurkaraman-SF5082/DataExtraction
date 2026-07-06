@@ -1,7 +1,8 @@
 using System.Data;
+using DataExtraction.Interfaces;
 using Npgsql;
 
-namespace DataExtraction.Models
+namespace DataExtraction.Services
 {
     public class DBHandling
     {
@@ -49,7 +50,8 @@ namespace DataExtraction.Models
             catch (Exception ex)
             {
                 // LogHandler.Instance.WriteLog($"Error during connection ExecuteTransactionAsync: {ex.Message}");
-                Console.WriteLine(ex.Message);
+                // Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.InnerException ?? ex);
                 return -1;
             }
         }

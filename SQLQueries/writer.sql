@@ -1,1 +1,1 @@
-COPY "BoldInsights" (id,title,assignee,"Amount After Discount","Commission") FROM STDIN (FORMAT BINARY)
+COPY "BoldInsights" (id,title,created_on,assignee,"Amount After Discount","Commission") FROM STDIN (FORMAT BINARY)

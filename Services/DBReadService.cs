@@ -1,27 +1,25 @@
 using System.Data;
 using DataExtraction.Interfaces;
 
-namespace DataExtraction.Models
+namespace DataExtraction.Services
 {
     public class DBReadService : IDBReadService
     {
         private readonly string _query;
-        private readonly IConfiguration _configuration;
+        private readonly string? _connectionStringPsql;
 
         //reading connection string from appsettings.json through IConfiguration
         //reading tickets data and storing it
         public DBReadService(IConfiguration configuration)
         {
-            _configuration = configuration;
+            _connectionStringPsql = configuration.GetConnectionString("PostgresDb");
             _query = new QueryReader().ReadQuery("fetch_tickets.sql");
         }
         public async Task<DataTable?> QueryRouter()
         {
-            var connectionStringPsql = _configuration.GetConnectionString("PostgresDb");
-
             try
             {
-                DataTable? dataTable = await DBHandling.ExecuteQueryAsync(connectionStringPsql, _query);
+                DataTable? dataTable = await DBHandling.ExecuteQueryAsync(_connectionStringPsql, _query);
 
                 return dataTable;
             }
